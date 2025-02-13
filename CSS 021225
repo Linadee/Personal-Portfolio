@@ -1,0 +1,234 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box
+}
+html {
+  scroll-behavior: smooth
+}
+@keyframes typing{
+  from{
+    width: 0ch;
+  }
+  to{
+    width: 25ch;
+  }
+}
+  @keyframes blink{
+    50%{
+      border-color: transparent;
+    }
+  }
+
+@keyframes slideRight {
+0%{
+  opacity: 0;
+  transform: translateX(-100px);}
+  100%{
+    opacity: 100%;
+    color: black;
+    transform: translateX(0);
+  }
+}
+
+nav{
+  position: fixed;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1000
+ }
+
+ .hover-underline{
+   color: black;
+   font-size: 1.5rem;
+   display: inline-block;
+   position: relative
+}
+.hover-underline::after,
+.hover-underline::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, #7b2cbf, #ff4d6d, #1e6091);
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease-out;
+}
+.hover-underline::before{
+  top: -5px;
+  transform-origin: left
+}
+.hover-underline:hover::after,
+.hover-underline:hover::before{
+  transform: scaleX(1)
+}
+#navbar ul {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 45px
+}
+#navbar ul li{
+  list-style: none;
+  color: black;
+  font-variant: small-caps;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  
+}
+html,body{
+  height: 100%;
+  background-image: linear-gradient(to left top, #be98ae, #b89cb5, #b1a1ba, #aba5bd, #a7a9be, #9fa4be, #969fbe, #8c9abe, #7d8bbd, #707cbb, #676cb8, #605cb3);
+  background-size: cover
+}
+
+#welcome-section{
+  padding-top: 100px;
+  padding-left: 20px;
+  }
+
+h1{
+margin: 10px;
+font-family: "Great Vibes", cursive;;
+font-size: 2.5rem;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+border-right: 3px solid black;
+display: inline-block;
+white-space: nowrap;
+width: 0;
+max-width: 100%;
+overflow: hidden;
+animation: typing 2.5s steps(25) forwards, blink 0.7s infinite;
+background: linear-gradient(to right, #7b2cbf, #ff4d6d, #1e6091);
+border-radius: 5px
+}
+
+h2{
+margin: 5px;
+padding-left: 45px;
+font-size: 1.0rem;
+opacity: 0;
+animation: slideRight 3s ease-out forwards;  
+} 
+
+h2::before,
+h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px; /* Line thickness */
+  background: linear-gradient(to right, #7b2cbf, #ff4d6d, #1e6091);}
+h2::before {
+  width: 400px;
+  top: -2px;}
+
+h2::after {
+   width: 400px;
+  bottom: -2px;}
+
+.about-me {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  padding: 50px
+ 
+}
+
+.intro {
+  margin: 80px;
+  width: 600px;
+  height: 300px;
+  background: linear-gradient(to right, rgba(123, 44, 191, 0.6), rgba(255, 77, 109, 0.6), rgba(30, 96, 145, 0.6));;
+  border-radius: 80px;
+  text-align: center;
+  padding: 50px;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+section {
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  background: linear-gradient(to left top, #be98ae, #b89cb5, #b1a1ba, #aba5bd, #a7a9be, #9fa4be, #969fbe, #8c9abe, #7d8bbd, #707cbb, #676cb8, #605cb3); 
+  border-radius: 15px; /* Optional: adds rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Adds a soft shadow */;
+  }
+
+iframe{
+  border-radius: 5%;
+}
+
+p{
+font-size: 1.3rem;
+font-weight: bold;
+line-height: 1.5;
+text-align: center;
+max-width: 800px;
+margin-bottom: 20px
+}
+
+
+link-container{
+  margin: 60px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   flex-wrap: wrap;
+   gap: 15px;
+   width: 100%;
+   text-align: center;}
+   
+   .project-tile {
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+   }
+
+.project-tile:hover{
+  color: white
+}
+
+.contact{
+  margin: 40px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-bottom: 30px
+
+  
+}
+ i{
+  font-size: 40px
+
+}
+
+@media  (min-width: 750px){
+{
+  .intro{
+ font-size: .9rem;}
+}
+@media (max-width: 768px){
+  .intro{
+    font-size: 1.0rem
+  }
+  .h1{
+    font-size: 2.5rem
+  }
+}
