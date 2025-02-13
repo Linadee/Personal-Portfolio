@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Personal Portfolio</title>
+  </head>
+  <body>
+  <nav id="navbar">
+      <ul>
+        <li><a href="#intro" class="hover-underline">About Me</a></li> 
+        <li><a href="#projects" class="hover-underline">Work</a></li> 
+        <li><a href="#contact" class="hover-underline">Contact</a></li>
+        </ul> </nav>
+    <div id="welcome-section"> 
+    <h1>Hello my name is Lina Diaz.</h1> 
+    <h2>Beginner Software Engineer | Frontend Enthusiast</h2> 
+    <br></br>
+    <div class="about-me">
+   <p class="intro">I’m a beginner software engineer passionate about building engaging and responsive web experiences. Currently, I have a strong foundation in HTML and CSS, and beginning my journey with JavaScript. My goal is to craft user-friendly interfaces and bring creative ideas to life through clean and efficient code.
+    </p>
+  <iframe 
+    src="https://www.canva.com/design/DAGe2Ib1vD8/kiX1IHnpvlJs5p9PfmoVYw/view?embed">
+  </iframe>
+</div>
+
+<section id="projects">
+        <p >This portfolio showcases my learning journey and growth as a developer. Stay tuned for exciting updates as I continue to sharpen my skills!</p>
+       <link-container>
+        <a class="project-tile" href="https://github.com/Linadee/Coachingform-demo">Coaching Form Demo</a>
+      <a class="project-tile" href="https://github.com/Linadee/Technical-Documentation-Page-">Technical Documentation Page</a>
+      <a class="project-tile" href="https://github.com/Linadee/Product-Landing-Page-/settings">Product Landing page</a>
+ </link-container>
+        </section> 
+<div class="contact" id="contact">
+  <p>Contact Me:</p>
+<a id="profile-link" href="mailto:diazlp2780@gmail.com" target="_blank">
+    <i class="fa-regular fa-envelope"></i>
+  </a>
+<a id="profile-link" href="https://github.com/Linadee" target="_blank"><i class="fa-brands fa-square-github"></i>
+</a>
+<a id="profile-link" target="_blank"><i class="fa-brands fa-square-instagram"></i>
+</a>
+<a href="https://linkedin.com/in/lina-dee1" id="profile-link" target="_blank"><i class="fa-brands fa-linkedin"></i>
+</a></div>
+    </body> 
+  </html> 
