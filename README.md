@@ -1,5 +1,5 @@
 ## About
-This is my personal developer portfolio built with HTML, CSS, and JavaScript.
+This is my personal portfolio built with HTML, CSS, and JavaScript.
 
 The site showcases my projects and highlights my work as I continue developing my skills.
 
