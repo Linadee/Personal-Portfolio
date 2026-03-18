@@ -1,16 +1,18 @@
 console.log("JS connected");
 
 const buttons = document.querySelectorAll(".project-tile");
-const projectCard = document.querySelector(".project-card");
+const cards = document.querySelectorAll(".project-card");
 
 for (let i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener("click", displayCard);
+  buttons[i].addEventListener("click", function () {
+    displayCard(i);
+  });
 }
-
-function displayCard() {
-  projectCard.classList.toggle("hidden");
-
-  setTimeout(function () {
-    projectCard.classList.add("hidden");
-  }, 5000);
+for (let i = 0; i < cards.length; i++) {
+  cards[i].addEventListener("click", function () {
+    cards[i].classList.add("hidden");
+  });
+}
+function displayCard(index) {
+  cards[index].classList.remove("hidden");
 }
