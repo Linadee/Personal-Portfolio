@@ -98,8 +98,8 @@ main {
   animation: slideRight 3s ease-out forwards;
 }
 
-h2::before,
-h2::after {
+#heading::before,
+#heading::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -108,12 +108,12 @@ h2::after {
   height: 2px; /* Line thickness */
   background: #b3819c;
 }
-h2::before {
+#heading::before {
   width: 400px;
   top: -2px;
 }
 
-h2::after {
+#heading::after {
   width: 400px;
   bottom: -2px;
 }
@@ -144,6 +144,7 @@ section {
 p {
   box-sizing: border-box;
   border-radius: 5px;
+  margin-bottom: 1rem;
 }
 
 .project-tile {
