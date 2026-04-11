@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QA Work Sample — Lina Diaz</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #f5f4f0;
+        --surface: #ffffff;
+        --surface-2: #f0ede8;
+        --border: #dddad4;
+        --text: #1a1917;
+        --muted: #6b6760;
+        --hint: #9e9a94;
+        --pass: #2d6a4f;
+        --pass-bg: #d8f3dc;
+        --fail: #9b2335;
+        --fail-bg: #fde8ec;
+        --blocked: #7d4e00;
+        --blocked-bg: #fff0cc;
+        --open: #1a4f8a;
+        --open-bg: #dbeafe;
+        --accent: #1a1917;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 2rem 0;
+      }
+
+      .header-inner {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .header-left {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .eyebrow {
+        font-family: "DM Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--hint);
+      }
+
+      h1 {
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--text);
+        line-height: 1.2;
+      }
+
+      .header-meta {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+      }
+
+      .meta-pair {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .meta-key {
+        font-size: 10px;
+        font-family: "DM Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--hint);
+      }
+      .meta-val {
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--muted);
+      }
+
+      .back-link {
+        font-size: 12px;
+        font-family: "DM Mono", monospace;
+        color: var(--hint);
+        text-decoration: none;
+        border: 1px solid var(--border);
+        padding: 6px 14px;
+        border-radius: 4px;
+        transition:
+          border-color 0.15s,
+          color 0.15s;
+        white-space: nowrap;
+        align-self: flex-start;
+      }
+      .back-link:hover {
+        color: var(--text);
+        border-color: var(--text);
+      }
+
+      main {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .doc-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .doc-label {
+        font-family: "DM Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--hint);
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .card-header {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .card-title {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+      .card-sub {
+        font-size: 12px;
+        color: var(--hint);
+        font-family: "DM Mono", monospace;
+      }
+
+      .stats-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat {
+        padding: 1rem 1.25rem;
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .stat:last-child {
+        border-right: none;
+      }
+      .stat-num {
+        font-size: 24px;
+        font-weight: 300;
+        color: var(--text);
+        font-family: "DM Mono", monospace;
+      }
+      .stat-num.green {
+        color: var(--pass);
+      }
+      .stat-num.red {
+        color: var(--fail);
+      }
+      .stat-num.amber {
+        color: var(--blocked);
+      }
+      .stat-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--hint);
+        font-family: "DM Mono", monospace;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      thead th {
+        padding: 10px 16px;
+        text-align: left;
+        font-size: 10px;
+        font-family: "DM Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--hint);
+        background: var(--surface-2);
+        font-weight: 400;
+        border-bottom: 1px solid var(--border);
+      }
+      tbody td {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+        vertical-align: top;
+        color: var(--text);
+      }
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+      tbody tr:hover {
+        background: var(--surface-2);
+      }
+
+      .ticket-id {
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .badge {
+        display: inline-block;
+        font-size: 10px;
+        font-family: "DM Mono", monospace;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        padding: 3px 9px;
+        border-radius: 3px;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .badge-pass {
+        background: var(--pass-bg);
+        color: var(--pass);
+      }
+      .badge-fail {
+        background: var(--fail-bg);
+        color: var(--fail);
+      }
+      .badge-blocked {
+        background: var(--blocked-bg);
+        color: var(--blocked);
+      }
+      .badge-open {
+        background: var(--open-bg);
+        color: var(--open);
+      }
+      .badge-high {
+        background: var(--fail-bg);
+        color: var(--fail);
+      }
+
+      .note-text {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+
+      .bug-meta {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .bug-meta-item {
+        padding: 0.85rem 1.25rem;
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .bug-meta-item:nth-child(3n) {
+        border-right: none;
+      }
+      .bug-meta-label {
+        font-size: 10px;
+        font-family: "DM Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--hint);
+        margin-bottom: 5px;
+      }
+      .bug-meta-val {
+        font-size: 13px;
+        color: var(--text);
+      }
+
+      .field-block {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        gap: 1rem;
+      }
+      .field-block:last-child {
+        border-bottom: none;
+      }
+      .field-key {
+        font-size: 11px;
+        font-family: "DM Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--hint);
+        padding-top: 2px;
+      }
+      .field-val {
+        font-size: 13px;
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      ol.steps {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      ol.steps li {
+        display: flex;
+        gap: 10px;
+      }
+      .step-n {
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        color: var(--hint);
+        min-width: 20px;
+        padding-top: 2px;
+      }
+
+      .tag {
+        display: inline-block;
+        font-size: 11px;
+        font-family: "DM Mono", monospace;
+        padding: 3px 10px;
+        border-radius: 3px;
+        background: var(--surface-2);
+        color: var(--muted);
+        border: 1px solid var(--border);
+      }
+
+      footer {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 0 2rem 3rem;
+        font-size: 11px;
+        font-family: "DM Mono", monospace;
+        color: var(--hint);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      @media (max-width: 600px) {
+        .stats-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .field-block {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+        .bug-meta-item:nth-child(3n) {
+          border-right: 1px solid var(--border);
+        }
+        .bug-meta-item:nth-child(2n) {
+          border-right: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <div class="header-left">
+          <span class="eyebrow">QA Work Sample</span>
+          <h1>Website Audit — Allspecenclosures.com</h1>
+          <div class="header-meta">
+            <div class="meta-pair">
+              <span class="meta-key">Project</span
+              ><span class="meta-val">SCRUM / Sprint 1</span>
+            </div>
+            <div class="meta-pair">
+              <span class="meta-key">Tester</span
+              ><span class="meta-val">Lina Diaz</span>
+            </div>
+            <div class="meta-pair">
+              <span class="meta-key">Date</span
+              ><span class="meta-val">April 2026</span>
+            </div>
+            <div class="meta-pair">
+              <span class="meta-key">Tool</span
+              ><span class="meta-val">Jira</span>
+            </div>
+          </div>
+        </div>
+        <a class="back-link" href="./index.html">← Portfolio</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Doc 1: Test Execution Summary -->
+      <div class="doc-section">
+        <div class="doc-label">Document 01 — Test execution summary</div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Test execution summary</div>
+            <div class="card-sub">
+              allspecenclosures.com · Manual / exploratory · Chrome 124 / macOS
+            </div>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat">
+              <span class="stat-num">4</span>
+              <span class="stat-label">Total cases</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num green">2</span>
+              <span class="stat-label">Passed</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num red">1</span>
+              <span class="stat-label">Failed</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num amber">1</span>
+              <span class="stat-label">Blocked</span>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 90px">Ticket</th>
+                <th>Test case</th>
+                <th style="width: 100px">Area</th>
+                <th style="width: 80px">Result</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="ticket-id">SCRUM-1</span></td>
+                <td>
+                  Navbar links navigate to correct pages; active page remains
+                  highlighted
+                </td>
+                <td>Navigation</td>
+                <td><span class="badge badge-pass">Pass</span></td>
+                <td class="note-text">
+                  All links functional. Active state correctly highlights
+                  current page.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ticket-id">SCRUM-3</span></td>
+                <td>Product images display hover effect and are clickable</td>
+                <td>Products</td>
+                <td><span class="badge badge-fail">Fail</span></td>
+                <td class="note-text">
+                  Products render as static images. No hover state, no click
+                  interaction detected.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ticket-id">SCRUM-4</span></td>
+                <td>
+                  Clicking a product redirects to the correct product detail
+                  page
+                </td>
+                <td>Products</td>
+                <td><span class="badge badge-blocked">Blocked</span></td>
+                <td class="note-text">
+                  Cannot execute — depends on SCRUM-3 resolution. Products are
+                  not clickable.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ticket-id">SCRUM-5</span></td>
+                <td>
+                  Quote request form shows validation errors when required
+                  fields are empty
+                </td>
+                <td>Forms</td>
+                <td><span class="badge badge-pass">Pass</span></td>
+                <td class="note-text">
+                  Form correctly blocks submission and displays field-level
+                  errors for name, email, and phone.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Doc 2: Bug Report -->
+      <div class="doc-section">
+        <div class="doc-label">Document 02 — Bug report</div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              Product images are not clickable and have no hover state
+            </div>
+            <div class="card-sub">
+              SCRUM-3 · Products page · Filed April 10, 2026
+            </div>
+          </div>
+
+          <div class="bug-meta">
+            <div class="bug-meta-item">
+              <div class="bug-meta-label">Severity</div>
+              <div class="bug-meta-val">
+                <span class="badge badge-high">High</span>
+              </div>
+            </div>
+            <div class="bug-meta-item">
+              <div class="bug-meta-label">Priority</div>
+              <div class="bug-meta-val">
+                <span class="badge badge-high">High</span>
+              </div>
+            </div>
+            <div class="bug-meta-item">
+              <div class="bug-meta-label">Status</div>
+              <div class="bug-meta-val">
+                <span class="badge badge-open">Open</span>
+              </div>
+            </div>
+            <div class="bug-meta-item">
+              <div class="bug-meta-label">Reporter</div>
+              <div class="bug-meta-val">Lina Diaz</div>
+            </div>
+            <div class="bug-meta-item">
+              <div class="bug-meta-label">Environment</div>
+              <div class="bug-meta-val">Chrome 124 / macOS</div>
+            </div>
+            <div class="bug-meta-item">
+              <div class="bug-meta-label">Component</div>
+              <div class="bug-meta-val">Products page</div>
+            </div>
+          </div>
+
+          <div class="field-block">
+            <div class="field-key">Description</div>
+            <div class="field-val">
+              All product images on the Products page are displayed as static,
+              non-interactive elements. Users cannot click on any product and
+              there is no hover effect to indicate interactivity. This blocks
+              the core product browsing flow entirely.
+            </div>
+          </div>
+
+          <div class="field-block">
+            <div class="field-key">Steps to reproduce</div>
+            <div class="field-val">
+              <ol class="steps">
+                <li>
+                  <span class="step-n">1.</span>Navigate to
+                  allspecenclosures.com
+                </li>
+                <li>
+                  <span class="step-n">2.</span>Click "Products" in the
+                  navigation bar
+                </li>
+                <li>
+                  <span class="step-n">3.</span>Hover the cursor over any
+                  product image
+                </li>
+                <li>
+                  <span class="step-n">4.</span>Attempt to click any product
+                  image
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="field-block">
+            <div class="field-key">Expected result</div>
+            <div class="field-val">
+              Product images should display a hover effect (cursor change,
+              highlight, or overlay) indicating interactivity. Clicking a
+              product should navigate the user to a product detail page or
+              initiate a quote request flow.
+            </div>
+          </div>
+
+          <div class="field-block">
+            <div class="field-key">Actual result</div>
+            <div class="field-val">
+              No hover state is applied when cursor moves over product images.
+              Clicking any product image produces no action — the page remains
+              unchanged.
+            </div>
+          </div>
+
+          <div class="field-block">
+            <div class="field-key">Impact</div>
+            <div class="field-val">
+              Users have no way to access individual product information or
+              initiate a purchase or quote from the Products page. SCRUM-4
+              (product redirect test) is blocked until this defect is resolved.
+            </div>
+          </div>
+
+          <div class="field-block">
+            <div class="field-key">Linked tickets</div>
+            <div class="field-val">
+              <span class="tag">SCRUM-4 blocked by this</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <span>Lina Diaz · QA Work Sample · Sprint 1 · April 2026</span>
+      <span>Manual testing · Jira · allspecenclosures.com</span>
+    </footer>
+  </body>
+</html>
